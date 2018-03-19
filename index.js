@@ -21,7 +21,7 @@ express()
   
     // TODO: Here we should check to make sure we have all the correct parameters
   
-    var operation = requestUrl.query.operation;
+    var postageType = requestUrl.query.mailType;
     var operand1 = Number(requestUrl.query.operand1);
     var operand2 = Number(requestUrl.query.operand2);
   

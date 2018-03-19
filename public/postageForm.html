@@ -9,13 +9,13 @@
 <body>
     <h1>Postage Calculator</h1>
     <form id="postage" action="/getRate" method="GET">
-        <input type="number" name="weight"><br/>
-        <select name="mailType" form="postage" >
+        Weight:<input type="number" name="weight"><br/>
+        Type:<select name="mailType" form="postage" >
             <option value="stamped" >Letter(Stamps)</option>
             <option value="metered" >Leters(Metered)</option>
             <option value="flats" >Large Envelopes(Flats)</option>
             <option value="firstClass" >First-Class Package Service—Retail</option>
-        </select>
+        </select><br/>
         <input type="submit">
     </form>
 </body>

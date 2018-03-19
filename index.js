@@ -110,7 +110,7 @@ app.listen(app.get('port'), function() {
   
     // Render the response, using the EJS page "result.ejs" in the pages directory
     // Makes sure to pass it the parameters we need.
-    response.render('views/pages/result', params);
+    response.render('pages/result', params);
   
   }
 

@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/gehrBehr/cs313-node.js/issues"
   },
-  "homepage": "https://github.com/gehrBehr/cs313-node.js#readme"
+  "homepage": "https://github.com/gehrBehr/cs313-node.js#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "pg": "^7.4.1",
+    "request": "^2.83.0",
+    "url-parse": "^1.2.0"
+  }
 }

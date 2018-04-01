@@ -99,7 +99,7 @@ app.get('../models/class', function(req, res, next){
   getClasses('err', 3);
 });
   
-module.exports = router;
+// module.exports = router;
 
   
 

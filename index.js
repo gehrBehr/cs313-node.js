@@ -13,6 +13,7 @@ var LocalStrategy = require('passport-local'),Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var http = require('http');
+var router = express.Router();
 
 // var routes = require('./routes/index');
 // var users = require('./routes/users');
@@ -74,6 +75,8 @@ const client = new Client({
   ssl: true,
 });
 
+var Class = require('../models/class');
+
 client.connect();
 
 // app.use('/', routes);
@@ -85,10 +88,19 @@ app.use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .engine('handlebars', exphbs({defaultLayout:'layout'}))
   .set('view engine', 'handlebars')
-  .get('/', function(req,res){
-    res.render('index.handlebars');
-  })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+    
+// app.get('/', function(req,res){
+//       res.render('index');
+//     });
+router.get('/', function(req, res, next){
+    Class.getClasses(function(err, classes){
+        res.render('index', {title: 'Express'});
+
+    }, 3);
+});
+  
+module.exports = router;
 
   
 

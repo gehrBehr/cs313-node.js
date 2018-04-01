@@ -14,6 +14,9 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var http = require('http');
 
+mongoose.connect('mongodb://heroku_n7fqkhx9:nn6ao650go64njqku8nld8torq@ds125068.mlab.com:25068/heroku_n7fqkhx9');
+var db = mongoose.connection;
+
 // var routes = require('./routes/index');
 // var users = require('./routes/users');
 

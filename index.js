@@ -13,7 +13,6 @@ var LocalStrategy = require('passport-local'),Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var http = require('http');
-var router = express.Router();
 
 // var routes = require('./routes/index');
 // var users = require('./routes/users');
@@ -94,9 +93,7 @@ app.get('/', function(req,res){
       });
   
 app.get('../models/class', function(req, res, next){
-  getClasses(function(err, classes){
-    res.render('index', {title: 'Express'});
-  }, 3);
+  getClasses('err', 3);
 });
   
 module.exports = router;

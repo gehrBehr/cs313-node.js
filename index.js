@@ -75,7 +75,6 @@ const client = new Client({
   ssl: true,
 });
 
-var Class = require('../models/class');
 
 client.connect();
 
@@ -85,15 +84,17 @@ client.connect();
 
 // view engine setup
 app.use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .engine('handlebars', exphbs({defaultLayout:'layout'}))
-  .set('view engine', 'handlebars')
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
-    
+.set('views', path.join(__dirname, 'views'))
+.engine('handlebars', exphbs({defaultLayout:'layout'}))
+.set('view engine', 'handlebars')
+.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
 // app.get('/', function(req,res){
-//       res.render('index');
-//     });
-router.get('/', function(req, res, next){
+  //       res.render('index');
+  //     });
+  var Class = require('../models/class');
+  
+  app.get('/', function(req, res, next){
     Class.getClasses(function(err, classes){
         res.render('index', {title: 'Express'});
 

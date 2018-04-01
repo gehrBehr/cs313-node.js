@@ -1,19 +1,35 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "name": "elearn",
+  "version": "0.0.1",
+  "description": "An online learning app",
   "engines": {
     "node": "8.9.1"
   },
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "start": "node index.js",
     "test": "node test.js"
   },
   "dependencies": {
-    "cool-ascii-faces": "1.3.4",
-    "ejs": "^2.5.7",
-    "express": "^4.15.2"
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "debug": "^3.1.0",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.0.3",
+    "handlebars": "^4.0.11",
+    "mongodb": "^3.0.5",
+    "mongoose": "*",
+    "morgan": "^1.6.1",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*",
+    "pg": "^7.4.1",
+    "serve-favicon": "^2.4.5"
   },
   "devDependencies": {
     "request": "^2.81.0",
@@ -21,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/gehrBehr/cs313-node.js.git"
   },
   "keywords": [
     "node",

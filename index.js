@@ -69,13 +69,13 @@ app.use(function  (req, res, next){
 })
 
 
-const PORT = process.env.PORT || 3000
-const { Client } = require('pg');
+// const PORT = process.env.PORT || 3000
+// const { Client } = require('pg');
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: true,
+// });
 
 
 client.connect();
@@ -95,7 +95,7 @@ app.get('/', function(req,res){
         res.render('index.handlebars');
       });
   
-app.get('../models/class', function(req, res, next){
+app.get('/class', function(req, res, next){
   getClasses('err', 3);
 });
   

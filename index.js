@@ -68,7 +68,7 @@ app.use(function  (req, res, next){
 
 
 const PORT = process.env.PORT || 3000
-const { Client } = require('pg');
+const { Client } = require('mongodb');
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -89,16 +89,14 @@ app.use(express.static(path.join(__dirname, 'public')))
 .set('view engine', 'handlebars')
 .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-// app.get('/', function(req,res){
-  //       res.render('index');
-  //     });
-  var Class = require('../models/class');
+app.get('/', function(req,res){
+        res.render('index');
+      });
   
-  app.get('/', function(req, res, next){
-    Class.getClasses(function(err, classes){
-        res.render('index', {title: 'Express'});
-
-    }, 3);
+app.get('../models/class', function(req, res, next){
+  getClasses(function(err, classes){
+    res.render('index', {title: 'Express'});
+  }, 3);
 });
   
 module.exports = router;

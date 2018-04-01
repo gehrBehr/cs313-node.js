@@ -90,7 +90,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 app.get('/', function(req,res){
-        res.render('index');
+        res.render('index.handlebars');
       });
   
 app.get('../models/class', function(req, res, next){

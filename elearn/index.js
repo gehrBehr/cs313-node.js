@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.static('views'));
 
 app.get('/', function(req, res, next){
-      res.render('index');
+      res.render('index.handlebars');
   });
 
 app.get('/classes', function(req, res, next){

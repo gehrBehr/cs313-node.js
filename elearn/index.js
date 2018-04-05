@@ -14,23 +14,13 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var http = require('http');
 
-// view engine setup (CONFIG)
+//global vars
 const PORT = process.env.PORT || 3000;
 var app = express();
-app.use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .engine('handlebars', exphbs({defaultLayout:'layout'}))
-  .set('view engine', 'handlebars');
-
-app.use(express.static('views'));
-
-app.get('/', function(req, res, next){
-      res.render('index.handlebars');
-  });
-
-app.get('/classes', function(req, res, next){
-  res.render('error');
-  });
+app.use(function  (req, res, next){
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
 
 
 app.use(logger('dev'));
@@ -73,12 +63,23 @@ app.use(expressValidator({
 //connect flash
 app.use(flash());
 
-//global vars
-app.use(function  (req, res, next){
-  res.locals.messages = require('express-messages')(req, res);
-  next();
-})
 
+// view engine setup 
+app.use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .engine('handlebars', exphbs({defaultLayout:'layout'}))
+  .set('view engine', 'handlebars');
+
+app.use(express.static('views'));
+
+//routes
+app.get('/', function(req, res, next){
+      res.render('index.handlebars');
+  });
+
+app.get('/classes', function(req, res, next){
+  res.render('error');
+  });
 // var routes = require('./routes/index');
 // var users = require('./routes/users');
 // var classes = require('./routes/classes');
@@ -92,5 +93,5 @@ app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 // module.exports = app;
 
-  
+
 

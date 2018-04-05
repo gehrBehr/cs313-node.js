@@ -14,10 +14,24 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var http = require('http');
 
-// var routes = require('./routes/index');
-// var users = require('./routes/users');
-
+// view engine setup (CONFIG)
+const PORT = process.env.PORT || 3000;
 var app = express();
+app.use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .engine('handlebars', exphbs({defaultLayout:'layout'}))
+  .set('view engine', 'handlebars');
+
+app.use(express.static('views'));
+
+app.get('/', function(req, res, next){
+      res.render('index');
+  });
+
+app.get('/classes', function(req, res, next){
+  res.render('error');
+  });
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,7 +45,7 @@ app.use(session({
   secret: 'secret',
   saveUninitialized: true,
   resave: true
-
+  
 }));
 
 //passport
@@ -41,10 +55,10 @@ app.use(passport.session());
 // Express Validator
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
-      var namespace = param.split('.')
-      , root    = namespace.shift()
-      , formParam = root;
-
+    var namespace = param.split('.')
+    , root    = namespace.shift()
+    , formParam = root;
+    
     while(namespace.length) {
       formParam += '[' + namespace.shift() + ']';
     }
@@ -65,22 +79,18 @@ app.use(function  (req, res, next){
   next();
 })
 
+// var routes = require('./routes/index');
+// var users = require('./routes/users');
+// var classes = require('./routes/classes');
 
-const PORT = process.env.PORT || 3000;
+// app.get('/', routes.index);
+// app.get('/users', users);
+//app.get('/classes', classes);
 
-// app.use('/', routes);
-// app.use('/users', users);
-// app.use(express.static('views'));
 
-// view engine setup
-app.use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .engine('handlebars', exphbs({defaultLayout:'layout'}))
-  .set('view engine', 'handlebars')
-  .get('/', function(req,res){
-    res.render('index.handlebars');
-  })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+// module.exports = app;
 
   
 

@@ -66,15 +66,7 @@ app.use(function  (req, res, next){
 })
 
 
-const PORT = process.env.PORT || 3000
-const { Client } = require('pg');
-
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
-
-client.connect();
+const PORT = process.env.PORT || 3000;
 
 // app.use('/', routes);
 // app.use('/users', users);

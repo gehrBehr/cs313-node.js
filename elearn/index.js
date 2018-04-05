@@ -63,6 +63,7 @@ app.use(expressValidator({
 //connect flash
 app.use(flash());
 
+app.use(express.static('views'));
 
 // view engine setup 
 app.use(express.static(path.join(__dirname, 'public')))
@@ -70,7 +71,6 @@ app.use(express.static(path.join(__dirname, 'public')))
   .engine('handlebars', exphbs({defaultLayout:'layout'}))
   .set('view engine', 'handlebars');
 
-app.use(express.static('views'));
 
 //routes
 app.get('/', function(req, res, next){
@@ -78,7 +78,7 @@ app.get('/', function(req, res, next){
   });
 
 app.get('/classes', function(req, res, next){
-  res.render('error');
+  res.render('error.handlebars');
   });
 // var routes = require('./routes/index');
 // var users = require('./routes/users');

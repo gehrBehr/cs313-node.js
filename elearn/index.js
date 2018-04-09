@@ -13,10 +13,10 @@ var http = require('http');
 var LocalStrategy = require('passport-local'),Strategy;
 var fs = require('fs');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/elearn');
+//mongoose.connect('mongodb://127.0.0.1:27017/elearn');
+//var db = mongoose.connection;
+mongoose.connect('mongodb://heroku_n7fqkhx9:nn6ao650go64njqku8nld8torq@ds125068.mlab.com:25068/heroku_n7fqkhx9');
 var db = mongoose.connection;
-//mongoose.connect('mongodb://heroku_n7fqkhx9:nn6ao650go64njqku8nld8torq@ds125068.mlab.com:25068/heroku_n7fqkhx9');
-// var db = mongoose.connection;
 
 fs.readdirSync(__dirname + '/models/').forEach(function(filename){
   if(~filename.indexOf('.js')) require(__dirname + '/models/' + filename);

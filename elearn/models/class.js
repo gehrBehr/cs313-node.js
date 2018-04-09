@@ -1,15 +1,20 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 // Class Schema
-var ClassSchema = mongoose.Schema({
+var classSchema = new Schema({
 	title: {
-		type: String
+		type: String,
+		ref: 'title'
 	},
 	description: {
-		type: String
+		type: String,
+		ref: 'body'
+
 	},
 	instructor:{
-		type:String
+		type:String,
+		ref: 'teacher'
 	},
 	lessons:[{
 		lesson_number: {type: Number},
@@ -17,12 +22,11 @@ var ClassSchema = mongoose.Schema({
 		lesson_body:{type: String}
 	}]
 });
-
-var Class = module.exports = mongoose.model('Class', ClassSchema);
+var Class = mongoose.model('classes', classSchema);
 
 // Fetch All Classes
-module.exports.getClasses = function(callback, limit){
-	Class.find(callback).limit(limit);
+getClasses = function(callback, limit){
+	mongoose.model.find(callback).limit(limit);
 }
 
 // Fetch Single Class

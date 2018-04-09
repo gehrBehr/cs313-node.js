@@ -1,35 +1,7 @@
-<p>Here are the latest Classes:</p>
+{{#each classes}}
 <div class="col_4">
-    <h4>English</h4>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et elit vestibulum,
-    consequat diam vel, euismod quam. Mauris in placerat nunc. Donec elit nisl, 
-    bibendum id consequat ornare, vulputate at nunc. Fusce ipsum est, suscipit eu sol
-    licitudin non, aliquet id dolor. Sed dignissim iaculis ligula sed sollicitudin. S
-    uspendisse euismod ante quis mauris dictum, a tincidunt ante mattis. Ut vitae max
-    imus lorem, eu elementum sem.
+    <h4>{{title}}</h4>
+    <p>{{description}}</p>
+    <a class="button" href="/classes/{{_id}}/details">View Class</a>
  </div>
-
-<div class="col_4">
-    <h4>Science</h4>
-    Donec sed nulla dui. Morbi a tristique ex. Curabitur ac nunc varius, dictum elit
-    vel, scelerisque tortor. Fusce nisl leo, congue at odio in, tristique volutpat 
-    purus. Quisque non dolor eros. Quisque eu posuere erat. Nullam pretium massa li
-    bero, sodales blandit nibh tincidunt ut. Sed mollis, erat vitae volutpat euismo
-    d, neque augue pharetra purus, in luctus nibh felis bibendum augue. Suspendisse
-    dignissim sem sed felis lacinia suscipit. Mauris sit amet iaculis dui. Quisque
-    metus turpis, tincidunt at vehicula vitae, convallis sed metus. Aenean iaculi
-    s elementum tellus, at mollis arcu. In convallis nisl vitae convallis bibendum.
-</div>
-
-<div class="col_4">
-    <h4>Programming</h4>
-    Vivamus felis tortor, congue ac convallis quis, mattis ut dolor. Curabitur varius
-    tincidunt tincidunt. Sed placerat odio ex, vitae viverra neque congue fermentum.
-    Integer in quam pulvinar, commodo odio a, maximus magna. Mauris rhoncus bibendu
-    m libero eget tincidunt. Proin non ante suscipit, porta est ac, sodales ex. Sus
-    pendisse non metus in dolor ornare tincidunt. Vestibulum fringilla ac ante ac a
-    liquet. Praesent non ligula a sapien accumsan sagittis nec non leo. Maecenas va
-    rius ligula a tempus venenatis. Phasellus faucibus euismod auctor. Aliquam semp
-    er porta porta. Sed fermentum eros eu facilisis facilisis. Quisque vel consequa
-    t ex.
-</div>
+ {{/each}}

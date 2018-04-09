@@ -9,10 +9,18 @@ var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
-var LocalStrategy = require('passport-local'),Strategy;
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
 var http = require('http');
+var LocalStrategy = require('passport-local'),Strategy;
+var fs = require('fs');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1:27017/elearn');
+var db = mongoose.connection;
+//mongoose.connect('mongodb://heroku_n7fqkhx9:nn6ao650go64njqku8nld8torq@ds125068.mlab.com:25068/heroku_n7fqkhx9');
+// var db = mongoose.connection;
+
+fs.readdirSync(__dirname + '/models/').forEach(function(filename){
+  if(~filename.indexOf('.js')) require(__dirname + '/models/' + filename);
+});
 
 //global vars
 const PORT = process.env.PORT || 3000;
@@ -77,21 +85,16 @@ app.get('/', function(req, res, next){
       res.render('index.handlebars');
   });
 
-app.get('/classes', function(req, res, next){
-  res.render('error.handlebars');
+app.get('/', function(req, res, next){
+  mongoose.model('classes').find(function(err, classes){
+    res.send(classes);
   });
-// var routes = require('./routes/index');
-// var users = require('./routes/users');
-// var classes = require('./routes/classes');
-
-// app.get('/', routes.index);
-// app.get('/users', users);
-//app.get('/classes', classes);
+});
 
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-// module.exports = app;
+module.exports = app;
 
 
 

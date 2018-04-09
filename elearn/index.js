@@ -85,7 +85,7 @@ app.get('/', function(req, res, next){
       res.render('index.handlebars');
   });
 
-app.get('/', function(req, res, next){
+app.get('/classes', function(req, res, next){
   mongoose.model('classes').find(function(err, classes){
     res.send(classes);
   });

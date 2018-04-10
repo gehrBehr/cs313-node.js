@@ -1,20 +1,15 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
 // Class Schema
-var classSchema = new Schema({
+var classSchema = mongoose.Schema({
 	title: {
-		type: String,
-		ref: 'title'
+		type: String
 	},
 	description: {
-		type: String,
-		ref: 'body'
-
+		type: String
 	},
 	instructor:{
-		type:String,
-		ref: 'teacher'
+		type:String
 	},
 	lessons:[{
 		lesson_number: {type: Number},
@@ -22,14 +17,19 @@ var classSchema = new Schema({
 		lesson_body:{type: String}
 	}]
 });
-var Class = mongoose.model('classes', classSchema);
 
-// Fetch All Classes
-getClasses = function(callback, limit){
-	mongoose.model.find(callback).limit(limit);
+var Class = module.exports = mongoose.model('Class', classSchema);
+
+// Fetchs all Classes. the limit makes it so only three newest show.
+module.exports.getAllClasses = function(callback){
+	Class.find(callback);
+}
+//get's three classes
+module.exports.getClasses = function(callback, limit){
+	Class.find(callback).limit(limit);
 }
 
-// Fetch Single Class
+// Fetch one class
 module.exports.getClassById = function(id, callback){
 	Class.findById(id, callback);
 }

@@ -1,8 +1,0 @@
-{
-  "name": "eLearn Online Classes",
-  "description": "Course application using Node.js and Express 4",
-  "repository": "https://github.com/gehrBehr/cs313-node.js/",
-  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
-  "keywords": ["node", "express", "heroku"],
-  "image": "heroku/nodejs"
-}

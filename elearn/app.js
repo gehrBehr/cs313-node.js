@@ -16,10 +16,10 @@ var mongo = require('mongodb');
 async = require('async');
 var mongoose = require('mongoose');
 
-// mongoose.connect('mongodb://localhost:27017/elearn');
-// var db = mongoose.connection;
-mongoose.connect('mongodb://heroku_n7fqkhx9:nn6ao650go64njqku8nld8torq@ds125068.mlab.com:25068/heroku_n7fqkhx9');
+mongoose.connect('mongodb://localhost:27017/elearn');
 var db = mongoose.connection;
+// mongoose.connect('mongodb://heroku_n7fqkhx9:nn6ao650go64njqku8nld8torq@ds125068.mlab.com:25068/heroku_n7fqkhx9');
+// var db = mongoose.connection;
 
 var app = express();
 
@@ -30,6 +30,8 @@ app.use(flash());
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var classes = require('./routes/classes');
+var students = require('./routes/students');
+var instructors = require('./routes/instructors');
 
 
 // view engine setup
@@ -77,14 +79,26 @@ app.use(expressValidator({
 
 // Global Vars
 app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages')(req, res);
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
   next();
 });
 
+// Makes the user object global in all views
+app.get('*', function(req, res, next) {
+  res.locals.user = req.user || null;
+  if(req.user){
+    res.locals.type = req.user.type;
+  }
+  next();
+});
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/classes', classes);
+app.use('/students', students);
+app.use('/instructors', instructors);
 
 
 // catch 404 and forward to error handler

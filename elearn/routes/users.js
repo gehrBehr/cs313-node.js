@@ -81,12 +81,60 @@ app.post('/register', function(req, res, next) {
 				email: email,
 				username:username
       });
-      User.saveInstructor(newUser, newInstructor).then(function (err, user) {
+      User.saveInstructor(newUser, newInstructor).then(function (result) {
         console.log('Instructor Created')
       });
     }
-    req.flash('success_msg', 'User Added');
-		res.redirect('/');
+    req.flash('success_msg', 'New Account Created!');
+    res.redirect('/');
   }
 });
+
+//serialize and deserialize the user
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.getUserById(id, function (err, user) {
+    done(err, user);
+  });
+});
+
+app.post('/login', passport.authenticate('local',{failureRedirect:'/', failureFlash: true}), function(req, res, next) {
+  req.flash('success_msg','You are now logged in');
+  var usertype = req.user.type;
+  res.redirect('/'+ usertype +'s/classes');
+});
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+  	User.getByUsername(username, function(err, user){
+    	if (err) throw err;
+    	if(!user){
+    		return done(null, false, { message: 'Unknown user ' + username }); 
+    	}
+
+    	User.comparePassword(password, user.password, function(err, isMatch) {
+      		if (err) return done(err);
+      		if(isMatch) {
+        		return done(null, user);
+      		} else {
+      			console.log('Invalid Password');
+      			// Success Message
+        		return done(null, false, { message: 'Invalid password' });
+      		}
+   	 	});
+    });
+  }
+));
+
+// Log User Out
+app.get('/logout', function(req, res){
+	req.logout();
+ 	// Success Message
+	req.flash('success_msg', "You have successfully logged out");
+  	res.redirect('/');
+});
+
 module.exports = app;

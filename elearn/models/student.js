@@ -28,3 +28,8 @@ var studentSchema = mongoose.Schema({
 });
 
 var Student = module.exports = mongoose.model('Students', studentSchema);
+
+//get the student by username
+module.exports.getStudentByUsername = function(username, callback){
+  Student.findOne({username: username}, callback);
+}

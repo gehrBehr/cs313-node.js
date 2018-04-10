@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
-var passwordHash = require('password-hash');
 
 //schema for users
 var userSchema = mongoose.Schema({
@@ -33,7 +32,7 @@ module.exports.getByUsername = function(username, callback){
 
 //compare the passwords
 module.exports.comparePassword = function(canidatePassword, hash, callback){
-    callback(null, hash.verify(canidatePassword, hash));
+    callback(null, bcrypt.compare(canidatePassword, hash));
 }
 
 // Create Student User

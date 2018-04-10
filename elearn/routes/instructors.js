@@ -40,10 +40,10 @@ app.post('/classes/:id/lessons/new', function(req, res, next){
 	info['lesson_body'] = req.body.lesson_body;
 
 	Class.addLesson(info, function(err, lesson){
-		console.log('Lesson Added..');
+		console.log('Lesson Added');
 	});
 
-	req.flash('success_msg','Lesson Added');
+	req.flash('success_msg','New Lesson Added');
 	res.redirect('/instructors/classes');
 });
 

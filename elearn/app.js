@@ -16,10 +16,10 @@ var mongo = require('mongodb');
 async = require('async');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/elearn');
-var db = mongoose.connection;
-// mongoose.connect('mongodb://heroku_n7fqkhx9:nn6ao650go64njqku8nld8torq@ds125068.mlab.com:25068/heroku_n7fqkhx9');
+// mongoose.connect('mongodb://localhost:27017/elearn');
 // var db = mongoose.connection;
+mongoose.connect('mongodb://heroku_n7fqkhx9:nn6ao650go64njqku8nld8torq@ds125068.mlab.com:25068/heroku_n7fqkhx9');
+var db = mongoose.connection;
 
 var app = express();
 
